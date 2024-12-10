@@ -233,7 +233,54 @@ header .navbar{
     color: var(--secondary-color);
 }
 
+/*Menu section styling */
+.menu-section {
+    color: var(--white-color);
+    background: var(--secondary-color);
+    padding: 50px 0 100px;
+}
 
+.menu-section .menu-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px; 
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.menu-section .menu-list .menu-item {
+    flex: 1 1 calc(33.333% - 20px); 
+    max-width: calc(33.333% - 20px);
+    min-width: 250px; 
+    text-align: center;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.menu-section .menu-list .menu-item .menu-image {
+    max-width: 90%; 
+    aspect-ratio: 1;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+
+.menu-section .menu-list .menu-item .name {
+    margin: 12px 0;
+    font-size: var(--font-size-l);
+    font-weight: var(--font-weight-semibold);
+}
+
+.menu-section .menu-list .menu-item .text {
+    font-size: var(--font-size-m);
+}
+
+@media screen and (max-width: 1024px) {
+    .menu-section .menu-list .menu-item {
+        flex: 1 1 calc(50% - 15px); /* İkili düzen */
+        max-width: calc(50% - 15px);
+    }
+}
 /* Responsive media query code for max widht 900px */
 @media screen and (max-width: 900px) {
     :root{
