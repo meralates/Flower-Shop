@@ -378,3 +378,111 @@ header .navbar{
     }
 
 }
+
+/* Review Section Styling */
+.review-section {
+    background-color: #f8f9fa;
+    color: #333;
+    padding: 50px 20px;
+    text-align: center;
+}
+
+.review-section .section-title {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #5a5a5a;
+}
+
+.review-section .slider-container {
+    position: relative;
+    overflow: hidden;
+    max-width: 100%;
+}
+
+.review-section .slider-wrapper {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.review-section .reviews-list {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.review-section .review {
+    min-width: 300px;
+    max-width: 300px;
+    flex-shrink: 0;
+    margin: 0 10px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.review-section .review .user-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+    border: 2px solid #007bff;
+}
+
+.review-section .review .user-name {
+    font-size: 18px;
+    font-weight: bold;
+    color: #007bff;
+    margin-bottom: 10px;
+}
+
+.review-section .review .rating {
+    font-size: 16px;
+    color: gold;
+    margin-bottom: 10px;
+}
+
+.review-section .review .comment {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.5;
+}
+
+/* Slider Buttons */
+.review-section .slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #007bff;
+    border: none;
+    color: #fff;
+    font-size: 20px;
+    padding: 10px 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.review-section .left-btn {
+    left: 10px;
+}
+
+.review-section .right-btn {
+    right: 10px;
+}
+
+/* Responsive Adjustments */
+@media screen and (max-width: 768px) {
+    .review-section .review {
+        min-width: 250px;
+        max-width: 250px;
+    }
+
+    .review-section .slider-btn {
+        font-size: 16px;
+    }
+}

@@ -10,3 +10,26 @@ menuOpenButton.addEventListener("click", () =>{
 });
 // Close menu when the close button is clicked
 menuCloseButton.addEventListener("click", () =>menuOpenButton.click());
+
+
+const sliderWrapper = document.querySelector('.slider-wrapper');
+const leftBtn = document.querySelector('.left-btn');
+const rightBtn = document.querySelector('.right-btn');
+
+let currentIndex = 0;
+
+leftBtn.addEventListener('click', () => {
+    currentIndex = Math.max(0, currentIndex - 1);
+    updateSlider();
+});
+
+rightBtn.addEventListener('click', () => {
+    const reviewCount = document.querySelectorAll('.review').length;
+    currentIndex = Math.min(reviewCount - 1, currentIndex + 1);
+    updateSlider();
+});
+
+function updateSlider() {
+    const offset = currentIndex * -320; // Her bir review genişlik + margin (CSS'teki genişlik)
+    sliderWrapper.style.transform = `translateX(${offset}px)`;
+}
