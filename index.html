@@ -12,35 +12,59 @@
 
 <body>
     <!--Header section-->
-    <header>
-        <nav class="navbar section content">
-            <a href="#" class="nav-bar logo">
-                <h2 class="logo-text">Flower</h2>
+<header>
+    <nav class="navbar section content">
+        <!-- Logo -->
+        <a href="#" class="nav-bar logo">
+            <h2 class="logo-text">Flower</h2>
+        </a>
+        
+        <!-- Search Bar -->
+        <div class="search-bar">
+            <input type="text" placeholder="Search for flowers, categories, or products" class="search-input">
+            <button class="search-button">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+        
+        <!-- Nav Menu -->
+        <ul class="nav-menu">
+            <button id="menu-close-button" class="fas fa-times"></button>
+            <li class="nav-item">
+                <a href="#" class="nav-link">Home</a>
+            </li>
+            <li class="nav-item">
+                <a href="#about" class="nav-link">About</a>
+            </li>
+            <li class="nav-item">
+                <a href="#menu" class="nav-link">Menu</a>
+            </li>
+            <li class="nav-item">
+                <a href="#review" class="nav-link">Reviews</a>
+            </li>
+            <li class="nav-item">
+                <a href="#gallery" class="nav-link">Gallery</a>
+            </li>
+            <li class="nav-item">
+                <a href="#contact" class="nav-link">Contact</a>
+            </li>
+        </ul>
+         <!-- Action Icons -->
+         <div class="action-icons">
+            <a href="#" class="icon-link">
+                <i class="fas fa-user"></i>
+                <span>Membership</span>
             </a>
-            <ul class="nav-menu">
-                <button id="menu-close-button" class="fas fa-times"></button>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#about" class="nav-link">About</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#menu" class="nav-link">Menu</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#review" class="nav-link">Reviews</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">Gallery</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">Contact</a>
-                </li>
+            <a href="#" class="icon-link">
+                <i class="fas fa-shopping-cart"></i>
+                <span>Cart</span>
+            </a>
+        </div>
 
-            </ul>
-            <button id="menu-open-button" class="fas fa-bars"></button>
-        </nav>
+        <!-- Mobile Menu Button -->
+        <button id="menu-open-button" class="fas fa-bars"></button>
+    </nav>
+
     </header>
     <main>
         <section class="hero-section">
@@ -52,8 +76,8 @@
                         flower sparks joy</p>
 
                     <div class="buttons">
-                        <a href="#" class="button order-now">Order Now</a>
-                        <a href="#" class="button contact-us">Contact Us</a>
+                        <a href="#products" class="button order-now">Order Now</a>
+                        <a href="#contact" class="button contact-us">Contact Us</a>
 
                     </div>
                 </div>
@@ -85,56 +109,64 @@
             </div>
         </section>
 
-        <!-- Menu section-->
-         <section id="menu"class="menu-section">
-            <h2 class="section-title">Our Products</h2>
-            <div class="section-content">
-                <ul class="menu-list">
-                    <li class="menu-item">
-                        <img src="images/Daisy/daisy.1.jpg" alt="Daisy" class="menu-item">
-                        <h3 class="name">Daisy</h3>
-                        <p class="text">Brighten your day with the cheerful charm of daisies.</p>
-                    </li>
-                    
-                    <li class="menu-item">
-                        <img src="images/Gerbera/gerbera.1.jpg" alt="Gerbera" class="menu-item">
-                        <h3 class="name">Gerbera</h3>
-                        <p class="text">Celebrate life with the vibrant colors of gerberas.</p>
-                    </li>
-                    
-                    <li class="menu-item">
-                        <img src="images/Mix/mix.1.jpg" alt="Mix" class="menu-item">
-                        <h3 class="name">Mix</h3>
-                        <p class="text">A delightful blend of flowers for any occasion.</p>
-                    </li>
-                    
-                    <li class="menu-item">
-                        <img src="images/Orchids/orchid.1.jpg" alt="Orchid" class="menu-item">
-                        <h3 class="name">Orchid</h3>
-                        <p class="text">Add elegance and grace with stunning orchids.</p>
-                    </li>
-                    
-                    <li class="menu-item">
-                        <img src="images/PotPlants/pot.1.jpg" alt="Pot Plants" class="menu-item">
-                        <h3 class="name">Pot Plants</h3>
-                        <p class="text">Bring nature indoors with our charming pot plants.</p>
-                    </li>
-                    
-                    <li class="menu-item">
-                        <img src="images/Rose/rose.1.jpg" alt="Rose" class="menu-item">
-                        <h3 class="name">Rose</h3>
-                        <p class="text">Express love and passion with timeless roses.</p>
-                    </li>
-                    
-                    <li class="menu-item">
-                        <img src="images/Tulip/tulip.1.jpg" alt="Tulip" class="menu-item">
-                        <h3 class="name">Tulip</h3>
-                        <p class="text">Embrace spring with the classic beauty of tulips.</p>
-                    </li>
-                    
-                </ul>
-            </div>
-         </section>
+        <!-- Menu section -->
+<section id="menu" class="menu-section">
+    <h2 class="section-title">Our Products</h2>
+    <div class="section-content">
+        <ul class="menu-list">
+            <li class="menu-item">
+                <a href="#daisy-section" class="menu-link">
+                    <img src="images/Daisy/daisy.1.jpg" alt="Daisy" class="menu-image">
+                    <h3 class="name">Daisy</h3>
+                    <p class="text">Brighten your day with the cheerful charm of daisies.</p>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="#gerbera-section" class="menu-link">
+                    <img src="images/Gerbera/gerbera.1.jpg" alt="Gerbera" class="menu-image">
+                    <h3 class="name">Gerbera</h3>
+                    <p class="text">Celebrate life with the vibrant colors of gerberas.</p>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="#mix-section" class="menu-link">
+                    <img src="images/Mix/mix.1.jpg" alt="Mix" class="menu-image">
+                    <h3 class="name">Mix</h3>
+                    <p class="text">A delightful blend of flowers for any occasion.</p>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="#orchid-section" class="menu-link">
+                    <img src="images/Orchids/orchid.1.jpg" alt="Orchid" class="menu-image">
+                    <h3 class="name">Orchid</h3>
+                    <p class="text">Add elegance and grace with stunning orchids.</p>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="#potplants-section" class="menu-link">
+                    <img src="images/PotPlants/pot.1.jpg" alt="Pot Plants" class="menu-image">
+                    <h3 class="name">Pot Plants</h3>
+                    <p class="text">Bring nature indoors with our charming pot plants.</p>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="#rose-section" class="menu-link">
+                    <img src="images/Rose/rose.1.jpg" alt="Rose" class="menu-image">
+                    <h3 class="name">Rose</h3>
+                    <p class="text">Express love and passion with timeless roses.</p>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="#tulip-section" class="menu-link">
+                    <img src="images/Tulip/tulip.1.jpg" alt="Tulip" class="menu-image">
+                    <h3 class="name">Tulip</h3>
+                    <p class="text">Embrace spring with the classic beauty of tulips.</p>
+                </a>
+            </li>
+        </ul>
+    </div>
+</section>
+
          <section id="review"class="review-section">
             <h2 class="section-title">Reviews</h2>
             <div class="section-content">
@@ -238,6 +270,70 @@
                 </div>
             </div>
         </section>
+
+        <!--Product seeciton-->
+
+        <section id="products" class="menu-section">
+            <h2 class="section-title">All Products</h2>
+            <div class="product-list">
+                <!-- Ürün 1 -->
+                <div class="product-card">
+                    <img src="images/rose.jpg" alt="Rose" class="product-image">
+                    <h3 class="product-name">Rose Bouquet</h3>
+                    <p class="product-description">Elegant and timeless rose bouquet.</p>
+                    <p class="product-price">$25.00</p>
+                    <button class="add-to-cart" onclick="addToCart('Rose Bouquet', 25)">Add to Cart</button>
+                </div>
+                <!-- Ürün 2 -->
+                <div class="product-card">
+                    <img src="images/daisy.jpg" alt="Daisy" class="product-image">
+                    <h3 class="product-name">Daisy Basket</h3>
+                    <p class="product-description">A joyful basket of fresh daisies.</p>
+                    <p class="product-price">$20.00</p>
+                    <button class="add-to-cart" onclick="addToCart('Daisy Basket', 20)">Add to Cart</button>
+                </div>
+                <!-- Ürün 3 -->
+                <div class="product-card">
+                    <img src="images/lily.jpg" alt="Lily" class="product-image">
+                    <h3 class="product-name">Lily Collection</h3>
+                    <p class="product-description">A stunning collection of lilies.</p>
+                    <p class="product-price">$30.00</p>
+                    <button class="add-to-cart" onclick="addToCart('Lily Collection', 30)">Add to Cart</button>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Contact Section -->
+<section id="contact" class="contact-section">
+    <div class="contact-container">
+        <h2>Contact Us</h2>
+        <form action="submit_form.php" method="POST">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required placeholder="Enter your name">
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required placeholder="Enter your email address">
+            </div>
+
+            <div class="form-group">
+                <label for="subject">Subject</label>
+                <input type="text" id="subject" name="subject" required placeholder="Enter subject">
+            </div>
+
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" required placeholder="Write your message here"></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">Send Message</button>
+        </form>
+    </div>
+</section>
+        
         
 
     </main>

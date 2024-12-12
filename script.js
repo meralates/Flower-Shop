@@ -33,3 +33,17 @@ function updateSlider() {
     const offset = currentIndex * -320; // Her bir review genişlik + margin (CSS'teki genişlik)
     sliderWrapper.style.transform = `translateX(${offset}px)`;
 }
+
+
+//Sepete ekleme
+const cart = [];
+
+function addToCart(productName, productPrice) {
+    cart.push({ name: productName, price: productPrice });
+    alert(`${productName} has been added to your cart.`);
+    console.log(cart);
+}
+
+
+
+
