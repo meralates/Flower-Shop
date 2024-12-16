@@ -778,5 +778,69 @@ textarea {
   .submit-btn:hover {
     background-color: #218838;
   }
+  .category {
+    margin-bottom: 40px;
+}
+
+.category-title {
+    font-size: 1.8rem;
+    color: #4a154b;
+    margin-bottom: 20px;
+}
+
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.product-card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    text-align: center;
+    width: 250px;
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+}
+
+.product-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.product-name {
+    font-size: 1.5rem;
+    color: #333;
+    margin: 10px 0;
+}
+
+.product-price {
+    font-size: 1.2rem;
+    color: #28a745;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.add-to-cart {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.add-to-cart:hover {
+    background-color: #0056b3;
+}
+
   
 
