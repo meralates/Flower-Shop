@@ -115,5 +115,47 @@ completeOrderButton.addEventListener("click", completeOrder);
 
 */
 
+// Modal Elements
+const membershipLink = document.getElementById("membership-link");
+const modal = document.getElementById("membership-modal");
+const closeModal = document.getElementById("close-modal");
+const signupLink = document.getElementById("signup-link");
 
+// Open Membership Modal when clicking the Membership Button
+membershipLink.addEventListener("click", function() {
+    modal.style.display = "block";
+});
+
+// Close Modal when clicking on X (close button)
+closeModal.addEventListener("click", function() {
+    modal.style.display = "none";
+});
+
+// Close Modal when clicking outside the modal content
+window.addEventListener("click", function(event) {
+    if (event.target === modal) {
+        modal.style.display = "none";
+    }
+});
+
+// Switch to Sign Up form when clicking "Sign Up" link
+signupLink.addEventListener("click", function() {
+    document.querySelector("h2").textContent = "Sign Up";
+    document.getElementById("login-btn").textContent = "Sign Up";
+    document.getElementById("signup-link").style.display = "none";  // Hide sign-up link
+    // You can further add logic for showing the registration form if necessary
+});
+
+// Example Sign In form submission handler
+document.getElementById("login-form").addEventListener("submit", function(event) {
+    event.preventDefault();
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    // Here you can send the data to the server or use it as needed
+    localStorage.setItem("userEmail", email);  // Storing email as an example
+
+    // Close the modal after submission
+    modal.style.display = "none";
+});
 

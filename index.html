@@ -49,17 +49,39 @@
                 <a href="#contact" class="nav-link">Contact</a>
             </li>
         </ul>
-         <!-- Action Icons -->
-         <div class="action-icons">
-            <a href="#" class="icon-link">
-                <i class="fas fa-user"></i>
-                <span>Membership</span>
-            </a>
-            <a href="#" class="icon-link">
-                <i class="fas fa-shopping-cart"></i>
-                <span>Cart</span>
-            </a>
-        </div>
+        <!-- Action Icons -->
+<div class="action-icons">
+    <!-- Membership Button (To trigger the sign-in popup) -->
+    <a href="javascript:void(0);" class="icon-link" id="membership-link">
+        <i class="fas fa-user"></i>
+        <span>Membership</span>
+    </a>
+
+    <!-- Cart Button (Always visible) -->
+    <a href="#" class="icon-link" id="cart-link">
+        <i class="fas fa-shopping-cart"></i>
+        <span>Cart</span>
+    </a>
+</div>
+
+<!-- Membership Modal (Sign In / Sign Up Form) -->
+<div id="membership-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" id="close-modal">&times;</span>
+        <h2>Sign In</h2>
+        <form id="login-form">
+            <label for="email">Email:</label>
+            <input type="email" id="email" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" required>
+            <button type="submit" id="login-btn">Sign In</button>
+        </form>
+        <p>Don't have an account? <a href="javascript:void(0);" id="signup-link">Sign Up</a></p> <!--Amaç: Link tıklanınca sayfanın yenilenmesini veya bir yere gitmesini engellemek.-->
+    </div>
+</div>
+
+
+        
 
         <!-- Mobile Menu Button -->
         <button id="menu-open-button" class="fas fa-bars"></button>
