@@ -101,4 +101,118 @@ document.getElementById("login-form").addEventListener("submit", function(event)
     // Close the modal after submission
     modal.style.display = "none";
 });
+// Giriş Yapma İşlemi (Login)
+document.getElementById("login-form").addEventListener("submit", async function(event) {
+    event.preventDefault(); // Sayfanın yeniden yüklenmesini önler
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
 
+    try {
+        const response = await fetch("http://localhost:3000/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, password })
+        });
+
+        const data = await response.json();
+        if (response.ok) {
+            alert("Giriş başarılı! Token: " + data.token);
+            // Token'ı saklamak için localStorage kullanılabilir
+            localStorage.setItem("token", data.token);
+        } else {
+            alert(data.error || "Giriş yapılamadı.");
+        }
+    } catch (error) {
+        alert("Bir hata oluştu. Lütfen tekrar deneyin.");
+        console.error(error);
+    }
+});
+
+// Kayıt Olma İşlemi (Register)
+document.getElementById("signup-link").addEventListener("click", function() {
+    const name = prompt("Adınızı girin:");
+    const email = prompt("Email adresinizi girin:");
+    const password = prompt("Şifrenizi girin:");
+
+    if (name && email && password) {
+        fetch("http://localhost:3000/register", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ name, email, password })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.message) {
+                alert("Kayıt başarılı!");
+            } else {
+                alert("Kayıt başarısız: " + data.error);
+            }
+        })
+        .catch(error => {
+            console.error("Kayıt sırasında hata oluştu:", error);
+        });
+    }
+});
+
+ // Membership linke tıklanınca modal açılır
+ document.getElementById("membership-link").addEventListener("click", function () {
+    document.getElementById("membership-modal").style.display = "block";
+});
+
+// Modal kapatma
+document.getElementById("close-modal").addEventListener("click", function () {
+    document.getElementById("membership-modal").style.display = "none";
+});
+
+// Kayıt işlemi (Sign Up)
+document.getElementById("signup-link").addEventListener("click", function () {
+    const name = prompt("Adınızı girin:");
+    const email = prompt("Email adresinizi girin:");
+    const password = prompt("Şifrenizi girin:");
+
+    if (name && email && password) {
+        fetch("http://localhost:3000/register", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ name, email, password })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.message) {
+                alert("Kayıt başarılı!");
+                document.getElementById("membership-modal").style.display = "none";
+            } else {
+                alert("Kayıt başarısız: " + data.error);
+            }
+        })
+        .catch(error => {
+            console.error("Kayıt sırasında hata oluştu:", error);
+        });
+    }
+});
+
+// Giriş işlemi (Sign In)
+document.getElementById("login-form").addEventListener("submit", function (event) {
+    event.preventDefault(); // Sayfanın yenilenmesini önler
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    fetch("http://localhost:3000/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.token) {
+            alert("Giriş başarılı! Token: " + data.token);
+            localStorage.setItem("token", data.token); // Token'ı saklar
+            document.getElementById("membership-modal").style.display = "none";
+        } else {
+            alert(data.error || "Giriş yapılamadı.");
+        }
+    })
+    .catch(error => {
+        console.error("Giriş sırasında hata oluştu:", error);
+    });
+});
