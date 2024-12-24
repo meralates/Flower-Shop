@@ -557,6 +557,53 @@ p a:hover {
 
 }
 
+/*Gallery Section Styling */
+.gallery-section {
+    padding: 50px;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.gallery-section .section-title {
+    font-size: 2.5rem;
+    color: #6a2c70;
+    margin-bottom: 20px;
+}
+
+.gallery-intro {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 40px;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 0 10px;
+}
+
+.gallery-item {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: white;
+}
+
+.gallery-image {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.gallery-description {
+    padding: 10px;
+    font-size: 1rem;
+    color: #555;
+}
+
+
 /* Review Section Styling */
 .review-section {
     background-color: #f8f9fa;
