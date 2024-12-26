@@ -93,7 +93,6 @@
     </div>
   </div>
 
-
         
 
         <!-- Mobile Menu Button -->
@@ -144,63 +143,18 @@
             </div>
         </section>
 
-        <!-- Menu section -->
-<section id="menu" class="menu-section">
-    <h2 class="section-title">Our Products</h2>
-    <div class="section-content">
-        <ul class="menu-list">
-            <li class="menu-item">
-                <a href="#daisy-section" class="menu-link">
-                    <img src="images/Daisy/daisy.1.jpg" alt="Daisy" class="menu-image">
-                    <h3 class="name">Daisy</h3>
-                    <p class="text">Brighten your day with the cheerful charm of daisies.</p>
-                </a>
-            </li>
-            <li class="menu-item">
-                <a href="#gerbera-section" class="menu-link">
-                    <img src="images/Gerbera/gerbera.1.jpg" alt="Gerbera" class="menu-image">
-                    <h3 class="name">Gerbera</h3>
-                    <p class="text">Celebrate life with the vibrant colors of gerberas.</p>
-                </a>
-            </li>
-            <li class="menu-item">
-                <a href="#mix-section" class="menu-link">
-                    <img src="images/Mix/mix.1.jpg" alt="Mix" class="menu-image">
-                    <h3 class="name">Mix</h3>
-                    <p class="text">A delightful blend of flowers for any occasion.</p>
-                </a>
-            </li>
-            <li class="menu-item">
-                <a href="#orchid-section" class="menu-link">
-                    <img src="images/Orchids/orchid.1.jpg" alt="Orchid" class="menu-image">
-                    <h3 class="name">Orchid</h3>
-                    <p class="text">Add elegance and grace with stunning orchids.</p>
-                </a>
-            </li>
-            <li class="menu-item">
-                <a href="#potplants-section" class="menu-link">
-                    <img src="images/PotPlants/pot.1.jpg" alt="Pot Plants" class="menu-image">
-                    <h3 class="name">Pot Plants</h3>
-                    <p class="text">Bring nature indoors with our charming pot plants.</p>
-                </a>
-            </li>
-            <li class="menu-item">
-                <a href="#rose-section" class="menu-link">
-                    <img src="images/Rose/rose.1.jpg" alt="Rose" class="menu-image">
-                    <h3 class="name">Rose</h3>
-                    <p class="text">Express love and passion with timeless roses.</p>
-                </a>
-            </li>
-            <li class="menu-item">
-                <a href="#tulip-section" class="menu-link">
-                    <img src="images/Tulip/tulip.1.jpg" alt="Tulip" class="menu-image">
-                    <h3 class="name">Tulip</h3>
-                    <p class="text">Embrace spring with the classic beauty of tulips.</p>
-                </a>
-            </li>
-        </ul>
-    </div>
-</section>
+        <!--Menu seciton-->
+
+        <div id="categories">
+            <h2>Our Products</h2>
+            <div id="category-list"></div>
+          </div>
+          
+          <div id="products">
+            <h2>Products</h2>
+            <div id="product-list"></div>
+          </div>
+          
 
          <section id="review"class="review-section">
             <h2 class="section-title">Reviews</h2>
@@ -305,8 +259,6 @@
                 </div>
             </div>
         </section>
-
-        <!--Gallery Section-->
         <!-- Gallery Section -->
 <section id="gallery" class="gallery-section">
     <h2 class="section-title">Gallery</h2>
@@ -364,40 +316,6 @@
     </div>
 </section>
 
-       
-        <!--Product seeciton-->
-
-        <section id="products" class="menu-section">
-            <h2 class="section-title">All Products</h2>
-            <div class="product-list">
-                <!-- Ürün 1 -->
-                <div class="product-card">
-                    <img src="images/rose.jpg" alt="Rose" class="product-image">
-                    <h3 class="product-name">Rose Bouquet</h3>
-                    <p class="product-description">Elegant and timeless rose bouquet.</p>
-                    <p class="product-price">$25.00</p>
-                    <button class="add-to-cart" onclick="addToCart('Rose Bouquet', 25)">Add to Cart</button>
-                </div>
-                <!-- Ürün 2 -->
-                <div class="product-card">
-                    <img src="images/daisy.jpg" alt="Daisy" class="product-image">
-                    <h3 class="product-name">Daisy Basket</h3>
-                    <p class="product-description">A joyful basket of fresh daisies.</p>
-                    <p class="product-price">$20.00</p>
-                    <button class="add-to-cart" onclick="addToCart('Daisy Basket', 20)">Add to Cart</button>
-                </div>
-                <!-- Ürün 3 -->
-                <div class="product-card">
-                    <img src="images/lily.jpg" alt="Lily" class="product-image">
-                    <h3 class="product-name">Lily Collection</h3>
-                    <p class="product-description">A stunning collection of lilies.</p>
-                    <p class="product-price">$30.00</p>
-                    <button class="add-to-cart" onclick="addToCart('Lily Collection', 30)">Add to Cart</button>
-                </div>
-            </div>
-        </section>
-
-
         <!-- Contact Section -->
 <section id="contact" class="contact-section">
     <div class="contact-container">
@@ -427,118 +345,11 @@
         </form>
     </div>
 </section>
-<!--sepet section-->
-<section id="cart">
-    <h2>My Cart</h2>
-    <div id="cart-container"></div>
-    <p id="total-price">Total: 0 $</p>
-    <button id="complete-order">Complete</button>
-</section>
-
-<!--product section-->
-<section id="products">
-    <h2>Product</h2>
-
-    <!-- Daisy Kategorisi -->
-    <div class="category">
-        <h3 class="category-title">Daisy</h3>
-        <div class="product-list">
-            <div class="product-card">
-                <img src="images/Daisy/daisy.1.jpg" alt="Daisy" class="product-image">
-                <h4 class="product-name">Daisy Bouquet</h4>
-                <p class="product-price">4 $</p>
-                <button class="add-to-cart" data-name="Daisy Buketi" data-price="40">Add to Cart</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Gerbera Kategorisi -->
-    <div class="category">
-        <h3 class="category-title">Gerbera</h3>
-        <div class="product-list">
-            <div class="product-card">
-                <img src="images/Gerbera/gerbera.1.jpg" alt="Gerbera" class="product-image">
-                <h4 class="product-name">Gerbera Bouquet</h4>
-                <p class="product-price">5 $</p>
-                <button class="add-to-cart" data-name="Gerbera Buketi" data-price="50">Add to Cart</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Mix Kategorisi -->
-    <div class="category">
-        <h3 class="category-title">Mix</h3>
-        <div class="product-list">
-            <div class="product-card">
-                <img src="images/Mix/mix.1.jpg" alt="Mix" class="product-image">
-                <h4 class="product-name">Mix Bouquet</h4>
-                <p class="product-price">6 $</p>
-                <button class="add-to-cart" data-name="Mix Çiçek Buketi" data-price="60">Add to Cart</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Orchids Kategorisi -->
-    <div class="category">
-        <h3 class="category-title">Orchids</h3>
-        <div class="product-list">
-            <div class="product-card">
-                <img src="images/Orchids/orchid.1.jpg" alt="Orchid" class="product-image">
-                <h4 class="product-name">Orchids</h4>
-                <p class="product-price">7 $</p>
-                <button class="add-to-cart" data-name="Orchid Buketi" data-price="70">Add to Cart</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Rose Kategorisi -->
-    <div class="category">
-        <h3 class="category-title">Rose</h3>
-        <div class="product-list">
-            <div class="product-card">
-                <img src="images/Rose/rose.1.jpg" alt="Rose" class="product-image">
-                <h4 class="product-name">Rose Bouquet</h4>
-                <p class="product-price">4 $</p>
-                <button class="add-to-cart" data-name="Rose Buketi" data-price="45">Add to Cart</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Pot Plants Kategorisi -->
-    <div class="category">
-        <h3 class="category-title">Pot Plants</h3>
-        <div class="product-list">
-            <div class="product-card">
-                <img src="images/PotPlants/pot.1.jpg" alt="Pot Plants" class="product-image">
-                <h4 class="product-name">Pot Plants</h4>
-                <p class="product-price">8 $</p>
-                <button class="add-to-cart" data-name="Pot Çiçekleri" data-price="80">Add to Cart</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Tulip Kategorisi -->
-    <div class="category">
-        <h3 class="category-title">Tulip</h3>
-        <div class="product-list">
-            <div class="product-card">
-                <img src="images/Tulip/tulip.1.jpg" alt="Tulip" class="product-image">
-                <h4 class="product-name">Tulip Bouquet</h4>
-                <p class="product-price">5 $</p>
-                <button class="add-to-cart" data-name="Tulip Buketi" data-price="55">Add to Cart</button>
-            </div>
-        </div>
-    </div>
-</section>
-
-
-    
-        
-
-    </main>
+ </main>
 
     <script src="script.js"></script>
 
 </body>
 
 </html>
+

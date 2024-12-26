@@ -80,7 +80,6 @@ img{
 /* Navbar styling */
 
 
-
 header {
     position: fixed;
     width: 100%;
@@ -175,7 +174,6 @@ header .navbar {
     display: none;
 }
 
-
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .navbar .nav-menu {
@@ -206,7 +204,6 @@ header .navbar {
         right: 20px;
     }
 }
-
 
 
 /*Sign in */
@@ -401,57 +398,39 @@ p a:hover {
     color: var(--secondary-color);
 }
 
-/*Menu section styling */
-.menu-section {
-    color: var(--white-color);
-    background: var(--secondary-color);
-    padding: 50px 0 100px;
-}
-
-.menu-section .menu-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px; 
-    align-items: flex-start;
-    justify-content: space-between;
-}
-
-.menu-section .menu-list .menu-item {
-    flex: 1 1 calc(33.333% - 20px); 
-    max-width: calc(33.333% - 20px);
-    min-width: 250px; 
+#categories, #products {
+    margin: 30px;
+    padding: 30px;
+  }
+  
+  #category-list button {
+    margin: 5px;
+    padding: 50px;
+   border-radius:var(--border-radius-m);
+    background-color:var(--secondary-color);
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  #category-list button:hover {
+    background-color: var(--primary-color)
+  }
+  
+  .product {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin: 10px;
+    display: inline-block;
+    width: 200px;
     text-align: center;
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-.menu-section .menu-list .menu-item .menu-image {
-    max-width: 90%; 
-    aspect-ratio: 1;
-    object-fit: cover;
-    margin-bottom: 15px;
-}
-
-.menu-section .menu-list .menu-item .name {
-    margin: 12px 0;
-    font-size: var(--font-size-l);
-    font-weight: var(--font-weight-semibold);
-}
-
-.menu-section .menu-list .menu-item .text {
-    font-size: var(--font-size-m);
-}
-/* Menü bağlantı stilleri */
-.menu-section .menu-list .menu-item .menu-link {
-    text-decoration: none; /* Alt çizgiyi kaldır */
-    color: var(--white-color); /* Yazı rengini beyaz yap */
-}
-
-.menu-section .menu-list .menu-item .menu-link:hover {
-    color: var(--primary-color); /* İsteğe bağlı: hover rengi ekle */
-}
-
+  }
+  
+  .product img {
+    width: 100%;
+    height: auto;
+  }
+  
 
 @media screen and (max-width: 1024px) {
     .menu-section .menu-list .menu-item {
@@ -603,7 +582,6 @@ p a:hover {
     color: #555;
 }
 
-
 /* Review Section Styling */
 .review-section {
     background-color: #f8f9fa;
@@ -712,7 +690,6 @@ p a:hover {
     }
 }
 
-
 /* Products Section */
 #products {
     background-color: #f9f9f9;
@@ -786,7 +763,6 @@ p a:hover {
 .add-to-cart:hover {
     background-color: #0056b3;
 }
-
 
 .contact-section {
   padding: 50px 20px;
