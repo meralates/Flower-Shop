@@ -74,6 +74,7 @@ app.post('/login', (req, res) => {
 });
 
 // Sunucuyu başlat
+//commit kontrol
 app.listen(port, () => {
   console.log(`Sunucu http://localhost:${3000} adresinde çalışıyor`);
 });
