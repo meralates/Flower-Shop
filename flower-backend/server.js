@@ -12,10 +12,13 @@ const port = 3000;
 // Ortak Ayarlar
 const JWT_SECRET = process.env.JWT_SECRET || 'defaultSecretKey'; // Çevresel değişken yoksa varsayılan
 
-// Middleware
-app.use(cors());
+app.use(cors({
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+}));
 app.use(bodyParser.json());
-app.use('/images', express.static(path.join(__dirname, '../images')));
+app.use('/images', express.static(path.join(__dirname, 'images')));
+
 
 // MySQL Bağlantısı
 const db = mysql.createConnection({

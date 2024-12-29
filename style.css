@@ -424,20 +424,37 @@ p a:hover {
     display: inline-block;
     width: 200px;
     text-align: center;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   }
   
   .product img {
     width: 100%;
     height: auto;
+    border-radius: 5px;
   }
   
-
-@media screen and (max-width: 1024px) {
-    .menu-section .menu-list .menu-item {
-        flex: 1 1 calc(50% - 15px); /* İkili düzen */
-        max-width: calc(50% - 15px);
+  .product h3 {
+    font-size: 1.2em;
+    margin: 10px 0;
+  }
+  
+  .product span {
+    color: #333;
+    font-weight: bold;
+    margin-top: 10px;
+    display: block;
+  }
+  
+  
+  @media screen and (max-width: 768px) {
+    .product {
+      width: calc(100% - 20px); /* Mobilde tam genişlik */
+      margin: 10px auto;
     }
-}
+  }
+  
 /* Responsive media query code for max widht 900px */
 @media screen and (max-width: 900px) {
     :root{

@@ -175,56 +175,74 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* -------------------- Load Categories -------------------- */
  // Kategorileri Al ve Göster
-function fetchCategories() {
-  fetch('http://localhost:3000/categories')
-    .then(response => response.json())
-    .then(categories => {
-      const categoryList = document.getElementById('category-list');
-      categoryList.innerHTML = ''; // Eski içerikleri temizle
+ async function fetchCategories() {
+  try {
+    const response = await fetch('http://localhost:3000/categories');
+    const categories = await response.json();
 
-      categories.forEach(category => {
-        const button = document.createElement('button');
-        button.textContent = category.name;
-        button.onclick = () => fetchProducts(category.id); // Ürünleri getir
-        categoryList.appendChild(button);
-      });
-    })
-    .catch(err => console.error('Kategoriler alınamadı:', err));
+    displayCategories(categories);
+  } catch (error) {
+    console.error('Kategoriler alınırken hata oluştu:', error);
+  }
 }
+
+function displayCategories(categories) {
+  const categoryList = document.getElementById('category-list');
+  categoryList.innerHTML = '';
+
+  categories.forEach((category) => {
+    const categoryButton = document.createElement('button');
+    categoryButton.textContent = category.name;
+    categoryButton.onclick = () => fetchProducts(category.id); // Tıklanan kategoriye göre ürün getir
+
+    categoryList.appendChild(categoryButton);
+  });
+}
+
+// Sayfa yüklendiğinde kategorileri al
+document.addEventListener('DOMContentLoaded', fetchCategories);
+
 
 // Ürünleri Al ve Göster
-function fetchProducts(categoryId) {
-  fetch(`http://localhost:3000/products/${categoryId}`)
-    .then(response => response.json())
-    .then(products => {
-      const productList = document.getElementById('product-list');
-      productList.innerHTML = ''; // Eski ürünleri temizle
+// Sunucudan ürünleri al
+async function fetchProducts(categoryId) {
+  try {
+    const response = await fetch(`http://localhost:3000/products/${categoryId}`); // Kategori ID'yi buraya geçiyoruz
+    const products = await response.json();
 
-      products.forEach(product => {
-        const productDiv = document.createElement('div');
-        productDiv.className = 'product';
-
-        // Ürün resim yolunu ayarla
-        const productImage = document.createElement('img');
-        productImage.src = `http://localhost:3000/images/${product.image_path}`;
-        productImage.alt = product.name;
-
-        // Ürün adını ekle
-        const productName = document.createElement('h3');
-        productName.textContent = product.name;
-
-        // Ürün fiyatını ekle
-        const productPrice = document.createElement('p');
-        productPrice.textContent = `$${product.price}`;
-
-        productDiv.appendChild(productImage);
-        productDiv.appendChild(productName);
-        productDiv.appendChild(productPrice);
-        productList.appendChild(productDiv);
-      });
-    })
-    .catch(err => console.error('Ürünler alınamadı:', err));
+    // Ürünleri göster
+    displayProducts(products);
+  } catch (error) {
+    console.error('Ürünler alınırken hata oluştu:', error);
+  }
 }
+
+// Ürünleri DOM'a ekle
+function displayProducts(products) {
+  const productList = document.getElementById('product-list');
+  productList.innerHTML = ''; // Önce mevcut içerikleri temizle
+
+  products.forEach((product) => {
+    const productDiv = document.createElement('div');
+    productDiv.classList.add('product'); // CSS için product sınıfı ekle
+
+    productDiv.innerHTML = `
+      <img src="http://localhost:3000/images/${product.image}" alt="${product.name}">
+      <h3>${product.name}</h3>
+      <p>${product.description}</p>
+      <span>₺${product.price}</span>
+    `;
+
+    productList.appendChild(productDiv);
+  });
+}
+
+// Sayfa yüklendiğinde varsayılan kategori ürünlerini getir
+document.addEventListener('DOMContentLoaded', () => {
+  const defaultCategoryId = 1; // Varsayılan kategori ID
+  fetchProducts(defaultCategoryId);
+});
+
 
 // Sayfa Yüklenince Kategorileri Çek
 window.onload = fetchCategories;
