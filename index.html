@@ -12,99 +12,100 @@
 
 <body>
     <!--Header section-->
-<header>
-    <nav class="navbar section content">
-        <!-- Logo -->
-        <a href="#" class="nav-bar logo">
-            <h2 class="logo-text">Flower</h2>
-        </a>
-        
-        <!-- Search Bar -->
-        <div class="search-bar">
-            <input type="text" placeholder="Search for flowers, categories, or products" class="search-input">
-            <button class="search-button">
-                <i class="fas fa-search"></i>
-            </button>
-        </div>
-        
-        <!-- Nav Menu -->
-        <ul class="nav-menu">
-            <button id="menu-close-button" class="fas fa-times"></button>
-            <li class="nav-item">
-                <a href="#" class="nav-link">Home</a>
-            </li>
-            <li class="nav-item">
-                <a href="#about" class="nav-link">About</a>
-            </li>
-            <li class="nav-item">
-                <a href="#menu" class="nav-link">Menu</a>
-            </li>
-            <li class="nav-item">
-                <a href="#review" class="nav-link">Reviews</a>
-            </li>
-            <li class="nav-item">
-                <a href="#gallery" class="nav-link">Gallery</a>
-            </li>
-            <li class="nav-item">
-                <a href="#contact" class="nav-link">Contact</a>
-            </li>
-        </ul>
-        <!-- Action Icons -->
-        <div class="action-icons">
-            <!-- Membership Button -->
-            <a href="javascript:void(0);" id="membership-link" class="icon-link">
-              <i class="fas fa-user"></i> 
-              <span id="membership-text">Membership</span>
+    <header>
+        <nav class="navbar section content">
+            <!-- Logo -->
+            <a href="#" class="nav-bar logo">
+                <img src="images/logo1.png" alt="Flower Logo" class="logo-img">
             </a>
 
-<!-- Cart Button (Always visible) -->
-<a href="#" class="icon-link" id="cart-link">
-    <i class="fas fa-shopping-cart"></i>
-    <span>Cart</span>
-</a>
-</div>
 
-<!-- Sign In Modal -->
-<div id="signin-modal" class="modal hidden">
-    <div class="modal-content">
-      <span id="close-signin-modal">&times;</span>
-      <h2>Sign In</h2>
-      <form id="signin-form">
-        <input type="email" id="signin-email" placeholder="Email" required>
-        <input type="password" id="signin-password" placeholder="Password" required>
-        <button type="submit">Sign In</button>
-      </form>
-      <p>Don't have an account? <a href="javascript:void(0);" id="open-signup-modal">Sign Up</a></p>
-    </div>
-  </div>
+            <!-- Search Bar -->
+            <div class="search-bar">
+                <input type="text" placeholder="Search for flowers, categories, or products" class="search-input">
+                <button class="search-button">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
 
-  <!-- Sign Up Modal -->
-  <div id="signup-modal" class="modal hidden">
-    <div class="modal-content">
-      <span id="close-signup-modal">&times;</span>
-      <h2>Sign Up</h2>
-      <form id="signup-form">
-        <input type="text" id="signup-firstname" placeholder="First Name" required>
-        <input type="text" id="signup-lastname" placeholder="Last Name" required>
-        <input type="email" id="signup-email" placeholder="Email" required>
-        <input type="password" id="signup-password" placeholder="Password" required>
-        <button type="submit">Sign Up</button>
-      </form>
-    </div>
-  </div>
+            <!-- Nav Menu -->
+            <ul class="nav-menu">
+                <button id="menu-close-button" class="fas fa-times"></button>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#about" class="nav-link">About</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#menu" class="nav-link">Menu</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#review" class="nav-link">Reviews</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#gallery" class="nav-link">Gallery</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#contact" class="nav-link">Contact</a>
+                </li>
+            </ul>
+            <!-- Action Icons -->
+            <div class="action-icons">
+                <!-- Membership Button -->
+                <a href="javascript:void(0);" id="membership-link" class="icon-link">
+                    <i class="fas fa-user"></i>
+                    <span id="membership-text">Membership</span>
+                </a>
 
-        
+                <!-- Cart Button (Always visible) -->
+                <a href="#" class="icon-link" id="cart-link">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>Cart</span>
+                </a>
+            </div>
 
-        <!-- Mobile Menu Button -->
-        <button id="menu-open-button" class="fas fa-bars"></button>
-    </nav>
+            <!-- Sign In Modal -->
+            <div id="signin-modal" class="modal hidden">
+                <div class="modal-content">
+                    <span id="close-signin-modal">&times;</span>
+                    <h2>Sign In</h2>
+                    <form id="signin-form">
+                        <input type="email" id="signin-email" placeholder="Email" required>
+                        <input type="password" id="signin-password" placeholder="Password" required>
+                        <button type="submit">Sign In</button>
+                    </form>
+                    <p>Don't have an account? <a href="javascript:void(0);" id="open-signup-modal">Sign Up</a></p>
+                </div>
+            </div>
+
+            <!-- Sign Up Modal -->
+            <div id="signup-modal" class="modal hidden">
+                <div class="modal-content">
+                    <span id="close-signup-modal">&times;</span>
+                    <h2>Sign Up</h2>
+                    <form id="signup-form">
+                        <input type="text" id="signup-firstname" placeholder="First Name" required>
+                        <input type="text" id="signup-lastname" placeholder="Last Name" required>
+                        <input type="email" id="signup-email" placeholder="Email" required>
+                        <input type="password" id="signup-password" placeholder="Password" required>
+                        <button type="submit">Sign Up</button>
+                    </form>
+                </div>
+            </div>
+
+
+
+            <!-- Mobile Menu Button -->
+            <button id="menu-open-button" class="fas fa-bars"></button>
+        </nav>
 
     </header>
     <main>
         <section class="hero-section">
             <div class="section-content">
                 <div class="hero-details">
-                    <h2 class="title">Best Flower</h2>
+                    <h2 class="title">Fioria </h2>
                     <h3 class="subtitle">Make your day great with our special flower !</h3>
                     <p class="description">Welcome to our flower paradise, where every seed tells a story and every
                         flower sparks joy</p>
@@ -147,19 +148,19 @@
 
         <section id="menu" class="menu-section">
             <div id="categories">
-              <h2>Our Products</h2>
-              <div id="category-list"></div>
+                <h2>Our Products</h2>
+                <div id="category-list"></div>
             </div>
-          
-            <div id="products">
-              <h2>Products</h2>
-              <div id="product-list"></div> <!-- Ürünler buraya yüklenecek -->
-            </div>
-          </section>
-          
-          
 
-         <section id="review"class="review-section">
+            <div id="products">
+                <h2>Products</h2>
+                <div id="product-list"></div> <!-- Ürünler buraya yüklenecek -->
+            </div>
+        </section>
+
+
+
+        <section id="review" class="review-section">
             <h2 class="section-title">Reviews</h2>
             <div class="section-content">
                 <div class="slider-container">
@@ -176,7 +177,8 @@
                                 <img src="images/Users/User2.jpg" alt="User" class="user-image">
                                 <p class="user-name">James Brown</p>
                                 <p class="rating">★★★★★</p>
-                                <p class="comment">Absolutely stunning arrangements! Delivery was quick too. Highly recommended!</p>
+                                <p class="comment">Absolutely stunning arrangements! Delivery was quick too. Highly
+                                    recommended!</p>
                             </li>
                             <li class="review">
                                 <img src="images/Users/User3.jpg" alt="User" class="user-image">
@@ -242,7 +244,8 @@
                                 <img src="images/Users/User13.jpg" alt="User" class="user-image">
                                 <p class="user-name">Amelia Lewis</p>
                                 <p class="rating">★★★★★</p>
-                                <p class="comment">Highly satisfied! The arrangement looked exactly like the pictures.</p>
+                                <p class="comment">Highly satisfied! The arrangement looked exactly like the pictures.
+                                </p>
                             </li>
                             <li class="review">
                                 <img src="images/Users/User14.jpg" alt="User" class="user-image">
@@ -263,96 +266,100 @@
             </div>
         </section>
         <!-- Gallery Section -->
-<section id="gallery" class="gallery-section">
-    <h2 class="section-title">Gallery</h2>
-    <div class="section-content">
-        <p class="gallery-intro">Discover the beauty of our flowers from our garden to your hands, and see what our customers have shared with us!</p>
-        
-        <div class="gallery-grid">
-            <!-- Flower field images -->
-            <div class="gallery-item">
-                <img src="images/Gallery/gallery1.jpg" alt="Flower Field" class="gallery-image">
-                <p class="gallery-description">Our Flowers</p>
+        <section id="gallery" class="gallery-section">
+            <h2 class="section-title">Gallery</h2>
+            <div class="section-content">
+                <p class="gallery-intro">Discover the beauty of our flowers from our garden to your hands, and see what
+                    our customers have shared with us!</p>
+
+                <div class="gallery-grid">
+                    <!-- Flower field images -->
+                    <div class="gallery-item">
+                        <img src="images/Gallery/gallery1.jpg" alt="Flower Field" class="gallery-image">
+                        <p class="gallery-description">Our Flowers</p>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/Gallery/gallery3.jpg" alt="Flower Field" class="gallery-image">
+                        <p class="gallery-description">Our pink bouquet 💗</p>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/Gallery/gallery8.jpg" alt="Flower Field" class="gallery-image">
+                        <p class="gallery-description">Our bouquet photo from our customer</p>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/Gallery/gallery13.jpg" alt="Flower Field" class="gallery-image">
+                        <p class="gallery-description">Our blooming flower fields</p>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/Gallery/gallery10.jpg" alt="Flower Field" class="gallery-image">
+                        <p class="gallery-description">Our Bouquets</p>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/Gallery/gallery2.jpg" alt="Flower Field" class="gallery-image">
+                        <p class="gallery-description">A peaceful morning at the garden</p>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/Gallery/gallery11.jpg" alt="Customer with flowers" class="gallery-image">
+                        <p class="gallery-description">Happy customer with her bouquet</p>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/Gallery/gallery4.jpg" alt="Customer flowers" class="gallery-image">
+                        <p class="gallery-description">A stunning arrangement sent by a client</p>
+                    </div>
+
+                    <div class="gallery-item">
+                        <img src="images/Gallery/gallery12.jpg" alt="Event flowers" class="gallery-image">
+                        <p class="gallery-description">Floral arrangements at a wedding</p>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/Gallery/gallery6.jpg" alt="Flower decor" class="gallery-image">
+                        <p class="gallery-description">The appearance of our flowers on the shelves</p>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/Gallery/gallery15.jpg" alt="Flower Field" class="gallery-image">
+                        <p class="gallery-description">Our daisy bouquet 😍</p>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/Gallery/gallery14.jpg" alt="Flower Field" class="gallery-image">
+                        <p class="gallery-description">A moment from our workshop 🌸</p>
+                    </div>
+                </div>
             </div>
-            <div class="gallery-item">
-                <img src="images/Gallery/gallery3.jpg" alt="Flower Field" class="gallery-image">
-                <p class="gallery-description">Our pink bouquet 💗</p>
-            </div><div class="gallery-item">
-                <img src="images/Gallery/gallery8.jpg" alt="Flower Field" class="gallery-image">
-                <p class="gallery-description">Our bouquet photo from our customer</p>
-            </div><div class="gallery-item">
-                <img src="images/Gallery/gallery13.jpg" alt="Flower Field" class="gallery-image">
-                <p class="gallery-description">Our blooming flower fields</p>
-            </div><div class="gallery-item">
-                <img src="images/Gallery/gallery10.jpg" alt="Flower Field" class="gallery-image">
-                <p class="gallery-description">Our Bouquets</p>
-            </div>
-            <div class="gallery-item">
-                <img src="images/Gallery/gallery2.jpg" alt="Flower Field" class="gallery-image">
-                <p class="gallery-description">A peaceful morning at the garden</p>
-            </div>
-            <div class="gallery-item">
-                <img src="images/Gallery/gallery11.jpg" alt="Customer with flowers" class="gallery-image">
-                <p class="gallery-description">Happy customer with her bouquet</p>
-            </div>
-            <div class="gallery-item">
-                <img src="images/Gallery/gallery4.jpg" alt="Customer flowers" class="gallery-image">
-                <p class="gallery-description">A stunning arrangement sent by a client</p>
-            </div>
-    
-            <div class="gallery-item">
-                <img src="images/Gallery/gallery12.jpg" alt="Event flowers" class="gallery-image">
-                <p class="gallery-description">Floral arrangements at a wedding</p>
-            </div>
-            <div class="gallery-item">
-                <img src="images/Gallery/gallery6.jpg" alt="Flower decor" class="gallery-image">
-                <p class="gallery-description">The appearance of our flowers on the shelves</p>
-            </div>
-            <div class="gallery-item">
-                <img src="images/Gallery/gallery15.jpg" alt="Flower Field" class="gallery-image">
-                <p class="gallery-description">Our daisy bouquet 😍</p>
-            </div><div class="gallery-item">
-                <img src="images/Gallery/gallery14.jpg" alt="Flower Field" class="gallery-image">
-                <p class="gallery-description">A moment from our workshop 🌸</p>
-            </div>
-        </div>
-    </div>
-</section>
+        </section>
 
         <!-- Contact Section -->
-<section id="contact" class="contact-section">
-    <div class="contact-container">
-        <h2>Contact Us</h2>
-        <form action="submit_form.php" method="POST">
-            <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" id="name" name="name" required placeholder="Enter your name">
-            </div>
-            
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" required placeholder="Enter your email address">
-            </div>
+        <section id="contact" class="contact-section">
+            <div class="contact-container">
+                <h2>Contact Us</h2>
+                <form action="submit_form.php" method="POST">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required placeholder="Enter your name">
+                    </div>
 
-            <div class="form-group">
-                <label for="subject">Subject</label>
-                <input type="text" id="subject" name="subject" required placeholder="Enter subject">
-            </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required placeholder="Enter your email address">
+                    </div>
 
-            <div class="form-group">
-                <label for="message">Message</label>
-                <textarea id="message" name="message" required placeholder="Write your message here"></textarea>
-            </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" required placeholder="Enter subject">
+                    </div>
 
-            <button type="submit" class="submit-btn">Send Message</button>
-        </form>
-    </div>
-</section>
- </main>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" required placeholder="Write your message here"></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+        </section>
+    </main>
 
     <script src="script.js"></script>
 
 </body>
 
 </html>
-
