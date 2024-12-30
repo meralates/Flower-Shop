@@ -227,7 +227,7 @@ function displayProducts(products) {
     productDiv.classList.add('product'); // CSS için product sınıfı ekle
 
     productDiv.innerHTML = `
-      <img src="http://localhost:3000/images/${product.image}" alt="${product.name}">
+      <img src="${product.image}" alt="${product.name}">
       <h3>${product.name}</h3>
       <p>${product.description}</p>
       <span>₺${product.price}</span>

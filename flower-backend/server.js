@@ -2,7 +2,7 @@ const express = require('express');
 const mysql = require('mysql2');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs'); // bcryptjs kullanıyoruz
 const jwt = require('jsonwebtoken');
 const path = require('path');
 
@@ -19,13 +19,12 @@ app.use(cors({
 app.use(bodyParser.json());
 app.use('/images', express.static(path.join(__dirname, 'images')));
 
-
 // MySQL Bağlantısı
 const db = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: '1234', // Şifreniz
-  database: 'flower_shop',
+  database: 'flower',
   port: 3306,
 });
 
@@ -103,11 +102,11 @@ app.post('/login', (req, res) => {
 app.get('/categories', (req, res) => {
   const query = 'SELECT * FROM categories';
   db.query(query, (err, results) => {
-      if (err) {
-          console.error(err);
-          return res.status(500).json({ error: 'Kategoriler alınamadı.' });
-      }
-      res.json(results);
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ error: 'Kategoriler alınamadı.' });
+    }
+    res.json(results);
   });
 });
 
@@ -115,15 +114,15 @@ app.get('/categories', (req, res) => {
 app.get('/products/:category_id', (req, res) => {
   const categoryId = parseInt(req.params.category_id, 10);
   if (isNaN(categoryId)) {
-      return res.status(400).json({ error: 'Geçersiz kategori ID.' });
+    return res.status(400).json({ error: 'Geçersiz kategori ID.' });
   }
   const query = 'SELECT * FROM products WHERE category_id = ?';
   db.query(query, [categoryId], (err, results) => {
-      if (err) {
-          console.error(err);
-          return res.status(500).json({ error: 'Ürünler alınamadı.' });
-      }
-      res.json(results);
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ error: 'Ürünler alınamadı.' });
+    }
+    res.json(results);
   });
 });
 
@@ -131,5 +130,3 @@ app.get('/products/:category_id', (req, res) => {
 app.listen(port, () => {
   console.log(`Sunucu http://localhost:${port} adresinde çalışıyor.`);
 });
-
-
