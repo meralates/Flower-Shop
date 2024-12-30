@@ -78,100 +78,110 @@ document.addEventListener("DOMContentLoaded", () => {
     cartCountElement.textContent = `Cart (${cartItems.length})`;
   }
 
-  /* -------------------- Membership Modals -------------------- */
-  const signinModal = document.getElementById("signin-modal");
-  const signupModal = document.getElementById("signup-modal");
-  const closeSigninModal = document.getElementById("close-signin-modal");
-  const closeSignupModal = document.getElementById("close-signup-modal");
-  const membershipLink = document.getElementById("membership-link");
+ /* -------------------- Membership Modals -------------------- */
+const signinModal = document.getElementById("signin-modal");
+const signupModal = document.getElementById("signup-modal");
+const closeSigninModal = document.getElementById("close-signin-modal");
+const closeSignupModal = document.getElementById("close-signup-modal");
+const membershipLink = document.getElementById("membership-link");
 
-  if (membershipLink && signinModal && closeSigninModal && closeSignupModal) {
-    membershipLink.addEventListener("click", () => {
-      signinModal.classList.remove("hidden");
-    });
+if (membershipLink && signinModal && closeSigninModal && closeSignupModal) {
+  membershipLink.addEventListener("click", () => {
+    signinModal.classList.remove("hidden");
+  });
 
-    closeSigninModal.addEventListener("click", () => {
-      signinModal.classList.add("hidden");
-    });
+  closeSigninModal.addEventListener("click", () => {
+    signinModal.classList.add("hidden");
+  });
 
-    closeSignupModal.addEventListener("click", () => {
-      signupModal.classList.add("hidden");
-    });
+  closeSignupModal.addEventListener("click", () => {
+    signupModal.classList.add("hidden");
+  });
 
-    document.getElementById("open-signup-modal").addEventListener("click", () => {
-      signinModal.classList.add("hidden");
-      signupModal.classList.remove("hidden");
-    });
-  }
+  document.getElementById("open-signup-modal").addEventListener("click", () => {
+    signinModal.classList.add("hidden");
+    signupModal.classList.remove("hidden");
+  });
+}
 
-  /* -------------------- Sign Up Form -------------------- */
-  const signupForm = document.getElementById("signup-form");
-  if (signupForm) {
-    signupForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const firstName = document.getElementById("signup-firstname").value;
-      const lastName = document.getElementById("signup-lastname").value;
-      const email = document.getElementById("signup-email").value;
-      const password = document.getElementById("signup-password").value;
+/* -------------------- Sign Up Form -------------------- */
+const signupForm = document.getElementById("signup-form");
+if (signupForm) {
+  signupForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const firstName = document.getElementById("signup-firstname").value;
+    const lastName = document.getElementById("signup-lastname").value;
+    const email = document.getElementById("signup-email").value;
+    const password = document.getElementById("signup-password").value;
 
-      fetch("http://localhost:3000/register", {
+    try {
+      const response = await fetch("http://localhost:3000/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ firstName, lastName, email, password }),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.message) {
-            alert("Sign up successful!");
-            signupModal.classList.add("hidden");
-          } else {
-            alert("Sign up failed: " + data.error);
-          }
-        })
-        .catch((err) => console.error("Sign up error:", err));
-    });
-  }
+      });
 
-  /* -------------------- Sign In Form -------------------- */
-  const signinForm = document.getElementById("signin-form");
-  if (signinForm) {
-    signinForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const email = document.getElementById("signin-email").value;
-      const password = document.getElementById("signin-password").value;
+      const data = await response.json();
 
-      fetch("http://localhost:3000/login", {
+      if (response.ok) {
+        alert("Kayıt başarılı!");
+        signupModal.classList.add("hidden");
+      } else {
+        alert(`Hata: ${data.error}`);
+      }
+    } catch (error) {
+      console.error("Kayıt sırasında hata:", error);
+      alert("Kayıt sırasında bir hata oluştu.");
+    }
+  });
+}
+
+/* -------------------- Sign In Form -------------------- */
+const signinForm = document.getElementById("signin-form");
+if (signinForm) {
+  signinForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const email = document.getElementById("signin-email").value;
+    const password = document.getElementById("signin-password").value;
+
+    try {
+      const response = await fetch("http://localhost:3000/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.token) {
-            localStorage.setItem("token", data.token);
-            localStorage.setItem("userName", `${data.firstName} ${data.lastName}`);
-            alert("Sign in successful!");
-            updateMembershipName();
-            signinModal.classList.add("hidden");
-          } else {
-            alert("Sign in failed: " + data.error);
-          }
-        })
-        .catch((err) => console.error("Sign in error:", err));
-    });
-  }
+      });
 
-  /* -------------------- Update Membership Name -------------------- */
-  function updateMembershipName() {
-    const userName = localStorage.getItem("userName");
-    const membershipText = document.getElementById("membership-link");
+      const data = await response.json();
 
-    if (userName && membershipText) {
-      membershipText.innerHTML = `<i class="fas fa-user"></i> ${userName}`;
+      if (response.ok) {
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("userName", `${data.user.firstName} ${data.user.lastName}`);
+        alert("Giriş başarılı!");
+
+        updateMembershipName();
+        signinModal.classList.add("hidden");
+      } else {
+        alert(`Hata: ${data.error}`);
+      }
+    } catch (error) {
+      console.error("Giriş sırasında hata:", error);
+      alert("Giriş sırasında bir hata oluştu.");
     }
-  }
+  });
+}
 
-  updateMembershipName();
+/* -------------------- Update Membership Name -------------------- */
+function updateMembershipName() {
+  const userName = localStorage.getItem("userName");
+  const membershipText = document.getElementById("membership-text");
+
+  if (userName && membershipText) {
+    membershipText.textContent = userName;
+  }
+}
+
+updateMembershipName();
+
 
   /* -------------------- Load Categories -------------------- */
  // Kategorileri Al ve Göster
@@ -230,7 +240,7 @@ function displayProducts(products) {
       <img src="${product.image}" alt="${product.name}">
       <h3>${product.name}</h3>
       <p>${product.description}</p>
-      <span>₺${product.price}</span>
+      <span>$${product.price}</span>
     `;
 
     productList.appendChild(productDiv);

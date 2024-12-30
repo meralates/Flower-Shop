@@ -1,29 +1,28 @@
+// Gerekli modülleri yükle
 const express = require('express');
 const mysql = require('mysql2');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const bcrypt = require('bcryptjs'); // bcryptjs kullanıyoruz
+const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const path = require('path');
 
 const app = express();
 const port = 3000;
 
-// Ortak Ayarlar
-const JWT_SECRET = process.env.JWT_SECRET || 'defaultSecretKey'; // Çevresel değişken yoksa varsayılan
+// JWT için gizli anahtar
+const JWT_SECRET = process.env.JWT_SECRET || 'defaultSecretKey';
 
-app.use(cors({
-  origin: '*',
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-}));
+// Middleware
+app.use(cors());
 app.use(bodyParser.json());
 app.use('/images', express.static(path.join(__dirname, 'images')));
 
-// MySQL Bağlantısı
+// MySQL bağlantısı
 const db = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: '1234', // Şifreniz
+  password: '1234',
   database: 'flower',
   port: 3306,
 });
@@ -43,25 +42,29 @@ app.get('/', (req, res) => {
 
 // Kullanıcı Kayıt Endpointi
 app.post('/register', async (req, res) => {
-  const { name, email, password } = req.body;
+  const { email, password, firstName, lastName } = req.body;
 
-  if (!name || !email || !password) {
-    return res.status(400).json({ error: 'Tüm alanlar zorunludur.' });
+  // Eksik alan kontrolü
+  if (!email || !password || !firstName || !lastName) {
+    return res.status(400).json({ error: 'Tüm alanlar doldurulmalıdır.' });
   }
 
   try {
+    // Şifreyi hash'le
     const hashedPassword = await bcrypt.hash(password, 10);
-    const query = 'INSERT INTO Users (name, email, password) VALUES (?, ?, ?)';
-    db.query(query, [name, email, hashedPassword], (err) => {
+
+    // Kullanıcıyı veritabanına ekle
+    const query = 'INSERT INTO users (email, password, firstName, lastName) VALUES (?, ?, ?, ?)';
+    db.query(query, [email, hashedPassword, firstName, lastName], (err) => {
       if (err) {
         console.error('Kullanıcı kaydı başarısız:', err);
         return res.status(500).json({ error: 'Kullanıcı kaydedilemedi.' });
       }
-      res.status(201).json({ message: 'Kayıt başarılı!' });
+      res.status(201).json({ message: 'Kullanıcı başarıyla kaydedildi!' });
     });
   } catch (error) {
     console.error('Şifreleme hatası:', error);
-    res.status(500).json({ error: 'Kayıt sırasında hata oluştu.' });
+    res.status(500).json({ error: 'Kayıt sırasında bir hata oluştu.' });
   }
 });
 
@@ -69,11 +72,12 @@ app.post('/register', async (req, res) => {
 app.post('/login', (req, res) => {
   const { email, password } = req.body;
 
+  // Eksik alan kontrolü
   if (!email || !password) {
     return res.status(400).json({ error: 'Email ve şifre zorunludur.' });
   }
 
-  const query = 'SELECT * FROM Users WHERE email = ?';
+  const query = 'SELECT * FROM users WHERE email = ?';
   db.query(query, [email], async (err, results) => {
     if (err) {
       console.error('Veritabanı hatası:', err);
@@ -90,11 +94,17 @@ app.post('/login', (req, res) => {
       return res.status(401).json({ error: 'Şifre hatalı.' });
     }
 
-    const token = jwt.sign({ id: user.id, email: user.email }, JWT_SECRET, {
-      expiresIn: '1h',
-    });
+    const token = jwt.sign(
+      { id: user.id, email: user.email, firstName: user.firstName, lastName: user.lastName },
+      JWT_SECRET,
+      { expiresIn: '1h' }
+    );
 
-    res.json({ message: 'Giriş başarılı', token });
+    res.json({
+      message: 'Giriş başarılı',
+      token,
+      user: { firstName: user.firstName, lastName: user.lastName },
+    });
   });
 });
 
@@ -128,5 +138,5 @@ app.get('/products/:category_id', (req, res) => {
 
 // Sunucuyu Başlat
 app.listen(port, () => {
-  console.log(`Sunucu http://localhost:${port} adresinde çalışıyor.`);
+  console.log(`Sunucu http://localhost:${3000} adresinde çalışıyor.`);
 });
