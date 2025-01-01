@@ -136,7 +136,38 @@ app.get('/products/:category_id', (req, res) => {
   });
 });
 
+// Sipariş Ekle Endpointi
+app.post('/add-to-cart', (req, res) => {
+  const { productId, quantity, customerName, customerEmail } = req.body;
+
+  if (!productId || !quantity || !customerName || !customerEmail) {
+    return res.status(400).json({ error: 'Tüm alanlar doldurulmalıdır.' });
+  }
+
+  const productQuery = 'SELECT price FROM products WHERE id = ?';
+  db.query(productQuery, [productId], (err, results) => {
+    if (err || results.length === 0) {
+      console.error(err);
+      return res.status(500).json({ error: 'Ürün bilgisi alınamadı.' });
+    }
+
+    const productPrice = results[0].price;
+    const totalPrice = productPrice * quantity;
+    const orderDate = new Date();
+    const status = 'Pending';
+
+    const orderQuery = 'INSERT INTO orders (product_id, quantity, total_price, customer_name, customer_email, order_date, status) VALUES (?, ?, ?, ?, ?, ?, ?)';
+    db.query(orderQuery, [productId, quantity, totalPrice, customerName, customerEmail, orderDate, status], (err) => {
+      if (err) {
+        console.error('Sipariş kaydedilemedi:', err);
+        return res.status(500).json({ error: 'Sipariş kaydedilemedi.' });
+      }
+      res.status(201).json({ message: 'Sipariş başarıyla kaydedildi!' });
+    });
+  });
+});
+
 // Sunucuyu Başlat
 app.listen(port, () => {
-  console.log(`Sunucu http://localhost:${3000} adresinde çalışıyor.`);
+  console.log(`Sunucu http://localhost:${port} adresinde çalışıyor.`);
 });
