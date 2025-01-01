@@ -132,84 +132,74 @@ app.get('/products/:category_id', (req, res) => {
     res.json(results);
   });
 });
-
-<<<<<<< HEAD
-// Sipariş Ekle Endpointi
-app.post('/add-to-cart', (req, res) => {
-  const { productId, quantity, customerName, customerEmail } = req.body;
-
-  if (!productId || !quantity || !customerName || !customerEmail) {
-    return res.status(400).json({ error: 'Tüm alanlar doldurulmalıdır.' });
-  }
-
-  const productQuery = 'SELECT price FROM products WHERE id = ?';
-  db.query(productQuery, [productId], (err, results) => {
-    if (err || results.length === 0) {
-      console.error(err);
-      return res.status(500).json({ error: 'Ürün bilgisi alınamadı.' });
-    }
-
-    const productPrice = results[0].price;
-    const totalPrice = productPrice * quantity;
-    const orderDate = new Date();
-    const status = 'Pending';
-
-    const orderQuery = 'INSERT INTO orders (product_id, quantity, total_price, customer_name, customer_email, order_date, status) VALUES (?, ?, ?, ?, ?, ?, ?)';
-    db.query(orderQuery, [productId, quantity, totalPrice, customerName, customerEmail, orderDate, status], (err) => {
-      if (err) {
-        console.error('Sipariş kaydedilemedi:', err);
-        return res.status(500).json({ error: 'Sipariş kaydedilemedi.' });
-      }
-      res.status(201).json({ message: 'Sipariş başarıyla kaydedildi!' });
-    });
-  });
-});
-
-=======
-// Sipariş Oluşturma
+// Sipariş Oluşturma ve Sepete Ekleme
 app.post('/create-order', (req, res) => {
-  const token = req.headers.authorization?.split(' ')[1];
+  const token = req.headers.authorization?.split(' ')[1]; // JWT token'ı al
 
   if (!token) {
-    return res.status(401).json({ error: 'Yetkilendirme hatası.' });
+    return res.status(401).json({ error: 'Yetkilendirme hatası.' }); // Token yoksa yetkilendirme hatası
   }
 
   try {
-    const decoded = jwt.verify(token, JWT_SECRET);
+    const decoded = jwt.verify(token, JWT_SECRET); // Token'ı doğrula
     const userId = decoded.id;
     const { products, total_price, status } = req.body;
 
     if (!products || !total_price || !status) {
-      return res.status(400).json({ error: 'Eksik bilgiler.' });
+      return res.status(400).json({ error: 'Eksik bilgiler.' }); // Ürünler, fiyat veya durum eksikse hata dön
     }
 
-    const orderDate = new Date();
-    const query = 'INSERT INTO orders (product_id, quantity, total_price, user_id, order_date, status) VALUES ?';
+    const orderDate = new Date(); // Sipariş tarihi
+    const orderQuery = 'INSERT INTO orders (product_id, quantity, total_price, user_id, order_date, status) VALUES ?';
 
     const orderData = products.map((product) => [
       product.product_id,
       product.quantity,
-      total_price, // Direkt total_price frontend'den geliyor
+      total_price, // Frontend'den gelen toplam fiyat
       userId,
       orderDate,
       status,
     ]);
 
-    db.query(query, [orderData], (err) => {
+    db.query(orderQuery, [orderData], (err) => {
       if (err) {
         console.error('Sipariş kaydı sırasında hata:', err);
-        return res.status(500).json({ error: 'Sipariş kaydı başarısız.' });
+        return res.status(500).json({ error: 'Sipariş kaydı başarısız.' }); // Sipariş kaydedilemezse hata
       }
-      res.status(201).json({ message: 'Sipariş başarılı!' });
+
+      // Sepet Eklemeyi Gerçekleştir
+      const productIds = products.map((product) => product.product_id);
+      const quantities = products.map((product) => product.quantity);
+
+      productIds.forEach((productId, index) => {
+        const productQuery = 'SELECT price FROM products WHERE id = ?'; // Ürün fiyatını al
+        db.query(productQuery, [productId], (err, results) => {
+          if (err || results.length === 0) {
+            console.error(err);
+            return res.status(500).json({ error: 'Ürün bilgisi alınamadı.' }); // Ürün bilgisi alınamazsa hata
+          }
+
+          const productPrice = results[0].price;
+          const totalPrice = productPrice * quantities[index];
+
+          const cartQuery = 'INSERT INTO cart (user_id, product_id, quantity, total_price) VALUES (?, ?, ?, ?)';
+          db.query(cartQuery, [userId, productId, quantities[index], totalPrice], (err) => {
+            if (err) {
+              console.error('Sepet kaydedilemedi:', err);
+              return res.status(500).json({ error: 'Sepet kaydedilemedi.' }); // Sepet kaydedilemezse hata
+            }
+          });
+        });
+      });
+
+      res.status(201).json({ message: 'Sipariş ve sepet başarıyla kaydedildi!' }); // Başarıyla sipariş ve sepet kaydedildi
     });
+
   } catch (error) {
     console.error('JWT doğrulama hatası:', error);
-    res.status(401).json({ error: 'Yetkilendirme hatası.' });
+    res.status(401).json({ error: 'Yetkilendirme hatası.' }); // JWT doğrulama hatası
   }
 });
-
-
->>>>>>> 3bdf7ff9c60f6906f97b706e933604cb46ab283c
 // Sunucuyu Başlat
 app.listen(port, () => {
   console.log(`Sunucu http://localhost:${port} adresinde çalışıyor.`);
