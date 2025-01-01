@@ -1,4 +1,3 @@
-// Gerekli modülleri yükle
 const express = require('express');
 const mysql = require('mysql2');
 const bodyParser = require('body-parser');
@@ -10,20 +9,22 @@ const path = require('path');
 const app = express();
 const port = 3000;
 
-// JWT için gizli anahtar
-const JWT_SECRET = process.env.JWT_SECRET || 'defaultSecretKey';
+// Ortak Ayarlar
+const JWT_SECRET = process.env.JWT_SECRET || 'defaultSecretKey'; // Çevresel değişken yoksa varsayılan
 
-// Middleware
-app.use(cors());
+app.use(cors({
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+}));
 app.use(bodyParser.json());
 app.use('/images', express.static(path.join(__dirname, 'images')));
 
-// MySQL bağlantısı
+// MySQL Bağlantısı
 const db = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: '1234',
-  database: 'flower',
+  password: '1234', // Şifreniz
+  database: 'flower_shop',
   port: 3306,
 });
 
@@ -42,29 +43,25 @@ app.get('/', (req, res) => {
 
 // Kullanıcı Kayıt Endpointi
 app.post('/register', async (req, res) => {
-  const { email, password, firstName, lastName } = req.body;
+  const { firstName, lastName, email, password } = req.body;
 
-  // Eksik alan kontrolü
-  if (!email || !password || !firstName || !lastName) {
-    return res.status(400).json({ error: 'Tüm alanlar doldurulmalıdır.' });
+  if (!firstName || !lastName || !email || !password) {
+    return res.status(400).json({ error: 'Tüm alanlar zorunludur.' });
   }
 
   try {
-    // Şifreyi hash'le
     const hashedPassword = await bcrypt.hash(password, 10);
-
-    // Kullanıcıyı veritabanına ekle
-    const query = 'INSERT INTO users (email, password, firstName, lastName) VALUES (?, ?, ?, ?)';
-    db.query(query, [email, hashedPassword, firstName, lastName], (err) => {
+    const query = 'INSERT INTO users (firstName, lastName, email, password) VALUES (?, ?, ?, ?)';
+    db.query(query, [firstName, lastName, email, hashedPassword], (err) => {
       if (err) {
         console.error('Kullanıcı kaydı başarısız:', err);
         return res.status(500).json({ error: 'Kullanıcı kaydedilemedi.' });
       }
-      res.status(201).json({ message: 'Kullanıcı başarıyla kaydedildi!' });
+      res.status(201).json({ message: 'Kayıt başarılı!' });
     });
   } catch (error) {
     console.error('Şifreleme hatası:', error);
-    res.status(500).json({ error: 'Kayıt sırasında bir hata oluştu.' });
+    res.status(500).json({ error: 'Kayıt sırasında hata oluştu.' });
   }
 });
 
@@ -72,7 +69,6 @@ app.post('/register', async (req, res) => {
 app.post('/login', (req, res) => {
   const { email, password } = req.body;
 
-  // Eksik alan kontrolü
   if (!email || !password) {
     return res.status(400).json({ error: 'Email ve şifre zorunludur.' });
   }
@@ -94,19 +90,20 @@ app.post('/login', (req, res) => {
       return res.status(401).json({ error: 'Şifre hatalı.' });
     }
 
-    const token = jwt.sign(
-      { id: user.id, email: user.email, firstName: user.firstName, lastName: user.lastName },
-      JWT_SECRET,
-      { expiresIn: '1h' }
-    );
+    const token = jwt.sign({ id: user.id, email: user.email }, JWT_SECRET, {
+      expiresIn: '1h',
+    });
 
+    // Kullanıcı bilgilerini token ile birlikte döndür
     res.json({
       message: 'Giriş başarılı',
       token,
-      user: { firstName: user.firstName, lastName: user.lastName },
+      firstName: user.firstName,
+      lastName: user.lastName,
     });
   });
 });
+
 
 // Kategoriler Endpointi
 app.get('/categories', (req, res) => {
@@ -136,6 +133,7 @@ app.get('/products/:category_id', (req, res) => {
   });
 });
 
+<<<<<<< HEAD
 // Sipariş Ekle Endpointi
 app.post('/add-to-cart', (req, res) => {
   const { productId, quantity, customerName, customerEmail } = req.body;
@@ -167,6 +165,51 @@ app.post('/add-to-cart', (req, res) => {
   });
 });
 
+=======
+// Sipariş Oluşturma
+app.post('/create-order', (req, res) => {
+  const token = req.headers.authorization?.split(' ')[1];
+
+  if (!token) {
+    return res.status(401).json({ error: 'Yetkilendirme hatası.' });
+  }
+
+  try {
+    const decoded = jwt.verify(token, JWT_SECRET);
+    const userId = decoded.id;
+    const { products, total_price, status } = req.body;
+
+    if (!products || !total_price || !status) {
+      return res.status(400).json({ error: 'Eksik bilgiler.' });
+    }
+
+    const orderDate = new Date();
+    const query = 'INSERT INTO orders (product_id, quantity, total_price, user_id, order_date, status) VALUES ?';
+
+    const orderData = products.map((product) => [
+      product.product_id,
+      product.quantity,
+      total_price, // Direkt total_price frontend'den geliyor
+      userId,
+      orderDate,
+      status,
+    ]);
+
+    db.query(query, [orderData], (err) => {
+      if (err) {
+        console.error('Sipariş kaydı sırasında hata:', err);
+        return res.status(500).json({ error: 'Sipariş kaydı başarısız.' });
+      }
+      res.status(201).json({ message: 'Sipariş başarılı!' });
+    });
+  } catch (error) {
+    console.error('JWT doğrulama hatası:', error);
+    res.status(401).json({ error: 'Yetkilendirme hatası.' });
+  }
+});
+
+
+>>>>>>> 3bdf7ff9c60f6906f97b706e933604cb46ab283c
 // Sunucuyu Başlat
 app.listen(port, () => {
   console.log(`Sunucu http://localhost:${port} adresinde çalışıyor.`);

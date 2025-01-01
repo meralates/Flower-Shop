@@ -108,14 +108,6 @@ header .navbar {
     font-weight: var(--font-weight-semibold);
     text-transform: uppercase;
 }
-.logo-img {
-    border-radius: 50%; /* Logo'nun yuvarlak olmasını sağlar */
-    width: 100px; /* İhtiyaca göre logo genişliği */
-    height: 100px; /* İhtiyaca göre logo yüksekliği */
-    object-fit: cover; /* Görselin düzgün bir şekilde yerleşmesini sağlar */
-}
-
-
 
 .navbar .nav-menu .nav-link {
     padding: 10px 18px;
@@ -424,6 +416,77 @@ p a:hover {
   #category-list button:hover {
     background-color: var(--primary-color)
   }
+  /* Modal görünümünü kapalı yapar */
+/* Modal görünümünü kapalı yapar */
+.modal.hidden {
+    display: none;
+  }
+  
+  /* Modal temel tasarımı */
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .modal.hidden {
+    display: none; /* Gizli olduğunda */
+  }
+  
+  .modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+  }
+  
+  .close-modal {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #333;
+  }
+  
+  
+  .icon-link {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .cart-count {
+    background-color: red;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 50%;
+    padding: 2px 6px;
+    position: absolute;
+    top: -8px; /* Daha iyi hizalama için top değeri güncellendi */
+    right: -8px; /* Daha iyi hizalama için right değeri güncellendi */
+  }
+  
+  .cart-count.hidden {
+    display: none;
+  }
+  
+  
+  
   
   .product {
     border: 1px solid #ddd;
