@@ -24,7 +24,7 @@ const db = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: '1234', // Şifreniz
-  database: 'flower_shop',
+  database: 'flower',
   port: 3306,
 });
 
@@ -132,8 +132,11 @@ app.get('/products/:category_id', (req, res) => {
     res.json(results);
   });
 });
-// Sipariş Oluşturma ve Sepete Ekleme
+
 app.post('/create-order', (req, res) => {
+  console.log('Request Body:', req.body); // Gelen veriyi kontrol et
+  
+//sipariş oluştur ve sepete ekle
   const token = req.headers.authorization?.split(' ')[1]; // JWT token'ı al
 
   if (!token) {
@@ -200,6 +203,7 @@ app.post('/create-order', (req, res) => {
     res.status(401).json({ error: 'Yetkilendirme hatası.' }); // JWT doğrulama hatası
   }
 });
+
 // Sunucuyu Başlat
 app.listen(port, () => {
   console.log(`Sunucu http://localhost:${port} adresinde çalışıyor.`);
